@@ -163,6 +163,8 @@
     --text-5xl--line-height: 1;
     --text-6xl: 3.75rem;
     --text-6xl--line-height: 1;
+    --text-7xl: 4.5rem;
+    --text-7xl--line-height: 1;
     --text-8xl: 6rem;
     --text-8xl--line-height: 1;
     --text-9xl: 8rem;
@@ -173,6 +175,7 @@
     --font-weight-bold: 700;
     --font-weight-black: 900;
     --tracking-tight: -.025em;
+    --tracking-wide: .025em;
     --tracking-widest: .1em;
     --leading-tight: 1.25;
     --leading-snug: 1.375;
@@ -507,11 +510,20 @@
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-variant-ligatures: none !important;
-    font-feature-settings: "liga" 0, "clig" 0 !important;
-    text-rendering: crispEdges !important;
-    font-family: WicklowArabic, sans-serif !important;
-    line-height: 1.2 !important;
+    letter-spacing: normal !important;
+    font-variant-ligatures: common-ligatures !important;
+    font-family: KufyanArabic, sans-serif !important;
+    line-height: 1.4 !important;
+  }
+
+  .grid h3 {
+    letter-spacing: normal !important;
+    font-family: KufyanArabic, sans-serif !important;
+    font-weight: 600 !important;
+  }
+
+  [class*="card"] h3, [class*="FeatureCard"] h3, [class*="level"] h3, [class*="level"] h4 {
+    font-family: KufyanArabic, sans-serif !important;
   }
 }
 
@@ -2458,6 +2470,18 @@
     vertical-align: middle;
   }
 
+  .font-\[\'KufyanArabic\'\] {
+    font-family: KufyanArabic;
+  }
+
+  .font-\[\'TheSansArabic\'\] {
+    font-family: TheSansArabic;
+  }
+
+  .font-\[\'WicklowArabic\'\] {
+    font-family: WicklowArabic;
+  }
+
   .font-mono {
     font-family: Geist Mono, Geist Mono Fallback;
   }
@@ -2605,6 +2629,11 @@
     letter-spacing: var(--tracking-tight);
   }
 
+  .tracking-wide {
+    --tw-tracking: var(--tracking-wide);
+    letter-spacing: var(--tracking-wide);
+  }
+
   .tracking-widest {
     --tw-tracking: var(--tracking-widest);
     letter-spacing: var(--tracking-widest);
@@ -2726,6 +2755,16 @@
 
   .text-primary-foreground {
     color: var(--primary-foreground);
+  }
+
+  .text-primary\/80 {
+    color: var(--primary);
+  }
+
+  @supports (color: color-mix(in lab, red, red)) {
+    .text-primary\/80 {
+      color: color-mix(in oklab, var(--primary) 80%, transparent);
+    }
   }
 
   .text-purple-700 {
@@ -4953,6 +4992,13 @@
   }
 
   @media (min-width: 40rem) {
+    .sm\:text-2xl {
+      font-size: var(--text-2xl);
+      line-height: var(--tw-leading, var(--text-2xl--line-height));
+    }
+  }
+
+  @media (min-width: 40rem) {
     .sm\:text-3xl {
       font-size: var(--text-3xl);
       line-height: var(--tw-leading, var(--text-3xl--line-height));
@@ -4967,9 +5013,9 @@
   }
 
   @media (min-width: 40rem) {
-    .sm\:text-5xl {
-      font-size: var(--text-5xl);
-      line-height: var(--tw-leading, var(--text-5xl--line-height));
+    .sm\:text-6xl {
+      font-size: var(--text-6xl);
+      line-height: var(--tw-leading, var(--text-6xl--line-height));
     }
   }
 
@@ -5140,9 +5186,16 @@
   }
 
   @media (min-width: 64rem) {
-    .lg\:text-6xl {
-      font-size: var(--text-6xl);
-      line-height: var(--tw-leading, var(--text-6xl--line-height));
+    .lg\:text-3xl {
+      font-size: var(--text-3xl);
+      line-height: var(--tw-leading, var(--text-3xl--line-height));
+    }
+  }
+
+  @media (min-width: 64rem) {
+    .lg\:text-7xl {
+      font-size: var(--text-7xl);
+      line-height: var(--tw-leading, var(--text-7xl--line-height));
     }
   }
 
@@ -5499,6 +5552,10 @@
 
   .\[\&_\[cmdk-item\]_svg\]\:w-5 [cmdk-item] svg {
     width: calc(var(--spacing) * 5);
+  }
+
+  .\[\&_h3\]\:font-\[\'KufyanArabic\'\] h3 {
+    font-family: KufyanArabic;
   }
 
   .\[\&_img\]\:size-full img {

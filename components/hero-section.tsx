@@ -27,9 +27,17 @@ export function HeroSection({ onStartAssessment }: HeroSectionProps) {
           </div>
 
           {/* Slogan */}
-          <h1 className="font-[var(--font-heading)] text-4xl sm:text-5xl lg:text-6xl font-bold text-primary mb-6 leading-tight text-balance">
-            بنية.. نبني الفهمَ على قياسِك
-          </h1>
+            <h1 className="mb-6 text-balance leading-tight">
+              {/* اسم المشروع بالخط الأساسي (Wicklow) وفي سطر لوحده */}
+              <span className="block font-['WicklowArabic'] text-5xl sm:text-6xl lg:text-7xl font-bold text-primary mb-2">
+                بـــــــــنية..
+              </span>
+              
+              {/* بقية الجملة بالخط الفرعي (Kufyan) وتحتها */}
+              <span className="block font-['KufyanArabic'] text-3xl sm:text-2xl lg:text-3xl font-medium text-primary/80 tracking-wide">
+                نبنــــــــــــي الفهمَ على قيـــــــــاسِك
+              </span>
+            </h1>
           
           <p className="text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto mb-8 leading-relaxed text-pretty">
             منصة تكيفية معرفية مصممة لدعم الأفراد الذين يواجهون تحديات في التخيل الذهني (الأفانتازيا) 
@@ -47,22 +55,33 @@ export function HeroSection({ onStartAssessment }: HeroSectionProps) {
 
         {/* Features Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-16">
-          <FeatureCard
-            icon={Brain}
-            title="تقييم معرفي شامل"
-            description="اختبارات مصممة بعناية لفهم نمطك المعرفي الفريد وتحديد نقاط القوة والتحديات."
-          />
-          <FeatureCard
-            icon={Target}
-            title="محتوى مخصص"
-            description="مناهج تعليمية مصممة خصيصاً لمستواك، تراعي احتياجاتك وتدعم تطورك."
-          />
-          <FeatureCard
-            icon={Users}
-            title="دعم مستمر"
-            description="مجتمع داعم وموارد تعليمية متجددة لمساعدتك في رحلة التعلم."
-          />
-        </div>
+  {/* هنحط كل كارد جوه div ونديله class الخط */}
+  <div className="[&_h3]:font-['KufyanArabic']">
+    <FeatureCard
+      icon={Brain}
+      title="تقييم معرفي شامل"
+      description="اختبارات مصممة بعناية لفهم نمطك المعرفي الفريد وتحديد نقاط القوة والتحديات."
+    />
+  </div>
+
+  <div className="[&_h3]:font-['KufyanArabic']">
+    <FeatureCard
+      icon={Target}
+      title="محتوى مخصص"
+      description="مناهج تعليمية مصممة خصيصاً لمستواك، تراعي احتياجاتك وتدعم تطورك."
+    />
+  </div>
+
+  <div className="[&_h3]:font-['KufyanArabic']">
+    <FeatureCard
+      icon={Users}
+      title="دعم مستمر"
+      description="مجتمع داعم وموارد تعليمية متجددة لمساعدتك في رحلة التعلم."
+    />
+  </div>
+</div>
+
+
 
         {/* Mission Statement */}
         <div className="mt-20 bg-card rounded-2xl p-8 sm:p-12 border border-border">

@@ -89,66 +89,71 @@ export function LevelsSection({ onStartLevel }: LevelsSectionProps) {
         </div>
 
         {/* Levels Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {levels.map((level) => (
-            <Card
-              key={level.id}
-              className={`relative overflow-hidden transition-all ${
-                level.available
-                  ? "border-primary/30 hover:border-primary hover:shadow-lg"
-                  : "border-border opacity-80"
-              }`}
-            >
-              {!level.available && (
-                <div className="absolute top-4 left-4">
-                  <div className="flex items-center gap-2 bg-muted text-muted-foreground text-sm px-3 py-1 rounded-full">
-                    <Lock className="w-3 h-3" />
-                    قيد التطوير
-                  </div>
-                </div>
-              )}
-
-              <CardHeader className="pb-2">
-                <BuildingBlocks count={level.blocks} available={level.available} />
-              </CardHeader>
-
-              <CardContent className="pt-4">
-                <div className="text-center">
-                  <CardTitle className="font-[var(--font-heading)] text-xl mb-1">
-                    {level.title}
-                  </CardTitle>
-                  <p className={`text-sm font-medium mb-3 ${
-                    level.available ? "text-primary" : "text-muted-foreground"
-                  }`}>
-                    {level.subtitle}
-                  </p>
-                  <p className="text-muted-foreground text-sm leading-relaxed mb-6">
-                    {level.description}
-                  </p>
-
-                  {level.available ? (
-                    <Button
-                      onClick={() => onStartLevel(level.id)}
-                      className="w-full gap-2 bg-primary hover:bg-primary/90"
-                    >
-                      <BookOpen className="w-4 h-4" />
-                      ابدأ التعلم
-                    </Button>
-                  ) : (
-                    <Button
-                      variant="outline"
-                      disabled
-                      className="w-full gap-2"
-                    >
-                      <Lock className="w-4 h-4" />
-                      قريباً
-                    </Button>
-                  )}
-                </div>
-              </CardContent>
-            </Card>
-          ))}
+<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+  {levels.map((level) => (
+    <Card
+      key={level.id}
+      className={`relative overflow-hidden transition-all ${
+        level.available
+          ? "border-primary/30 hover:border-primary hover:shadow-lg"
+          : "border-border opacity-80"
+      }`}
+    >
+      {!level.available && (
+        <div className="absolute top-4 left-4">
+          {/* كلمة قيد التطوير بالخط الفرعي برضه عشان تبقى رقيقة */}
+          <div className="flex items-center gap-2 bg-muted text-muted-foreground text-sm px-3 py-1 rounded-full font-['KufyanArabic']">
+            <Lock className="w-3 h-3" />
+            قيد التطوير
+          </div>
         </div>
+      )}
+
+      <CardHeader className="pb-2">
+        <BuildingBlocks count={level.blocks} available={level.available} />
+      </CardHeader>
+
+      <CardContent className="pt-4">
+        <div className="text-center">
+          {/* تغيير الخط هنا للفرعي (Kufyan) */}
+          <CardTitle className="font-['KufyanArabic'] text-xl mb-1">
+            {level.title}
+          </CardTitle>
+          
+          {/* تغيير الخط هنا للفرعي (Kufyan) */}
+          <p className={`text-sm font-medium mb-3 font-['KufyanArabic'] ${
+            level.available ? "text-primary" : "text-muted-foreground"
+          }`}>
+            {level.subtitle}
+          </p>
+
+          <p className="text-muted-foreground text-sm leading-relaxed mb-6 font-['TheSansArabic']">
+            {level.description}
+          </p>
+
+          {level.available ? (
+            <Button
+              onClick={() => onStartLevel(level.id)}
+              className="w-full gap-2 bg-primary hover:bg-primary/90 font-['KufyanArabic']"
+            >
+              <BookOpen className="w-4 h-4" />
+              ابدأ التعلم
+            </Button>
+          ) : (
+            <Button
+              variant="outline"
+              disabled
+              className="w-full gap-2 font-['KufyanArabic']"
+            >
+              <Lock className="w-4 h-4" />
+              قريباً
+            </Button>
+          )}
+        </div>
+      </CardContent>
+    </Card>
+  ))}
+</div>
 
         {/* Info Banner */}
         <div className="mt-12 bg-secondary/10 rounded-2xl p-6 sm:p-8 border border-secondary/20">

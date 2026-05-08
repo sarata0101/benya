@@ -134,4 +134,23 @@
   letter-spacing: normal !important;
   font-variant-ligatures: common-ligatures !important;
   }
+
+/* أجبر كل عناوين الكروت (h3) إنها تاخد الخط الفرعي الكوفي */
+.grid h3 {
+  font-family: 'KufyanArabic', sans-serif !important;
+  font-weight: 600 !important;
+  letter-spacing: normal !important;
+}
+
+/* لو العناوين مش h3، السطر ده هيضمن إن أي عنوان جوه الكروت يتصلح */
+[class*="card"] h3, [class*="FeatureCard"] h3 {
+  font-family: 'KufyanArabic', sans-serif !important;
+}
+
+/* استهداف كروت المستويات */
+[class*="level"] h3, 
+[class*="level"] h4 {
+  font-family: 'KufyanArabic', sans-serif !important;
+}
+
 }
