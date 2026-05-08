@@ -1,14 +1,34 @@
 @import 'tailwindcss';
 @import 'tw-animate-css';
 
+/* تعريف الخطوط الجديدة من فولدر fonts */
+@font-face {
+  font-family: 'WicklowArabic';
+  src: url('/fonts/wicklow.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'KufyanArabic';
+  src: url('/fonts/kufyan.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'TheSansArabic';
+  src: url('/fonts/thesans.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 @custom-variant dark (&:is(.dark *));
 
-/* Benia Brand Colors:
-   Sandy Beige: #E5D7C4
-   Dark Burgundy: #560B18
-   Olive Green: #4A5D23
-*/
-
+/* Benia Brand Colors */
 :root {
   --background: #E5D7C4;
   --foreground: #2D1F1A;
@@ -45,12 +65,12 @@
   --sidebar-ring: #560B18;
 }
 
-
-
 @theme inline {
-  --font-sans: var(--font-noto-sans-arabic), 'Geist', sans-serif;
+  /* تعديل الخطوط هنا لتعمل بالخطوط الجديدة */
+  --font-sans: 'TheSansArabic', sans-serif;
   --font-mono: 'Geist Mono', 'Geist Mono Fallback';
-  --font-heading: var(--font-cairo), 'Geist', sans-serif;
+  --font-heading: 'WicklowArabic', 'KufyanArabic', sans-serif;
+  
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -94,7 +114,24 @@
   * {
     @apply border-border outline-ring/50;
   }
+  
   body {
     @apply bg-background text-foreground;
+    font-family: 'TheSansArabic', sans-serif !important;
+    line-height: 1.6 !important;
+    
+    /* السطور دي مهمة جداً لضبط رسم الحروف العربية */
+    text-rendering: optimizeLegibility !important;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-variant-ligatures: common-ligatures !important;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+  /* غيرنا Wicklow لـ Kufyan */
+  font-family: 'KufyanArabic', sans-serif !important; 
+  line-height: 1.4 !important;
+  letter-spacing: normal !important;
+  font-variant-ligatures: common-ligatures !important;
   }
 }

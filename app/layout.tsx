@@ -1,20 +1,8 @@
 import type { Metadata, Viewport } from 'next'
-import { Noto_Sans_Arabic, Cairo } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
 
-const notoSansArabic = Noto_Sans_Arabic({
-  subsets: ['arabic'],
-  variable: '--font-noto-sans-arabic',
-  display: 'swap',
-})
-
-const cairo = Cairo({
-  subsets: ['arabic'],
-  variable: '--font-cairo',
-  weight: ['600', '700', '800'],
-  display: 'swap',
-})
+// تم إيقاف استدعاء خطوط جوجل القديمة لأننا نستخدم الخطوط الخاصة من globals.css
 
 export const metadata: Metadata = {
   title: 'بنية - منصة التكيف المعرفي',
@@ -51,7 +39,10 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="ar" dir="rtl" className={`${notoSansArabic.variable} ${cairo.variable} bg-background`}>
+    <html lang="ar" dir="rtl" className="bg-background">
+      {/* لاحظي يا سارة: شيلنا الـ variables بتاعة الخطوط القديمة من الـ html class 
+          لأننا عرفنا الخطوط الجديدة مباشرة في globals.css داخل الـ body والـ h1-h6
+      */}
       <body className="font-sans antialiased">
         {children}
         {process.env.NODE_ENV === 'production' && <Analytics />}
