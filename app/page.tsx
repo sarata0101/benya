@@ -72,4 +72,6 @@ export default function BeniaApp() {
       </footer>
     </main>
   )
+
+  
 }
