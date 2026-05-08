@@ -34,9 +34,9 @@ export function HeroSection({ onStartAssessment }: HeroSectionProps) {
               </span>
               
               {/* بقية الجملة بالخط الفرعي (Kufyan) وتحتها */}
-              <span className="block font-['KufyanArabic'] text-3xl sm:text-2xl lg:text-3xl font-medium text-primary/80 tracking-wide">
-                نبنــــــــــــي الفهمَ على قيـــــــــاسِك
-              </span>
+              <span className="block font-['KufyanArabic'] text-[15px] sm:text-[18px] md:text-2xl lg:text-3xl font-medium text-primary/80 tracking-normal whitespace-nowrap">
+  نبني الفهمَ على قياسِك
+</span>
             </h1>
           
           <p className="text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto mb-8 leading-relaxed text-pretty">
