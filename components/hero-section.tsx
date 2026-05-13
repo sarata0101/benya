@@ -1,6 +1,6 @@
 "use client"
 
-import { Blocks, Brain, Target, Users } from "lucide-react"
+import { Blocks, Brain, Target, Users, ExternalLink } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 interface HeroSectionProps {
@@ -27,61 +27,70 @@ export function HeroSection({ onStartAssessment }: HeroSectionProps) {
           </div>
 
           {/* Slogan */}
-            <h1 className="mb-6 text-balance leading-tight">
-              {/* اسم المشروع بالخط الأساسي (Wicklow) وفي سطر لوحده */}
-              <span className="block font-['WicklowArabic'] text-5xl sm:text-6xl lg:text-7xl font-bold text-primary mb-2">
-                بـــــــــنية..
-              </span>
-              
-              {/* بقية الجملة بالخط الفرعي (Kufyan) وتحتها */}
-              <span className="block font-['KufyanArabic'] text-[15px] sm:text-[18px] md:text-2xl lg:text-3xl font-medium text-primary/80 tracking-normal whitespace-nowrap">
-  نـــــــــــبني الفهمَ على قيــــــــــاسِك
-</span>
-            </h1>
-          
+          <h1 className="mb-6 text-balance leading-tight">
+            <span className="block font-['WicklowArabic'] text-5xl sm:text-6xl lg:text-7xl font-bold text-primary mb-2">
+              بـــــــــنية..
+            </span>
+            <span className="block font-['KufyanArabic'] text-[15px] sm:text-[18px] md:text-2xl lg:text-3xl font-medium text-primary/80 tracking-normal whitespace-nowrap">
+              نـــــــــــبني الفهمَ على قيــــــــــاسِك
+            </span>
+          </h1>
+
           <p className="text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto mb-8 leading-relaxed text-pretty">
             منصة تكيفية معرفية مصممة لدعم الأفراد الذين يواجهون تحديات في التخيل الذهني (الأفانتازيا) 
             والوظائف التنفيذية. نقدم تقييماً شاملاً ومحتوى تعليمياً مخصصاً لكل مستوى.
           </p>
 
-          <Button
-            size="lg"
-            onClick={onStartAssessment}
-            className="bg-primary hover:bg-primary/90 text-primary-foreground text-lg px-8 py-6 h-auto rounded-xl shadow-lg hover:shadow-xl transition-all"
-          >
-            ابدأ التقييم الآن
-          </Button>
+          {/* Buttons Container */}
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <Button
+              size="lg"
+              onClick={onStartAssessment}
+              className="bg-primary hover:bg-primary/90 text-primary-foreground text-lg px-8 py-6 h-auto rounded-xl shadow-lg hover:shadow-xl transition-all w-full sm:w-auto"
+            >
+              ابدأ التقييم الآن
+            </Button>
+
+            {/* الزرار الأخضر الجديد لتفاصيل المشروع */}
+            <Button
+              asChild
+              size="lg"
+              className="bg-[#10b981] hover:bg-[#059669] text-white text-lg px-8 py-6 h-auto rounded-xl shadow-lg hover:shadow-xl transition-all w-full sm:w-auto flex items-center gap-2"
+            >
+              <a href="/benya-details.pdf" target="_blank" rel="noopener noreferrer">
+                <ExternalLink className="w-5 h-5" />
+                لمعرفة تفاصيل أكتر عن مشروع بنية
+              </a>
+            </Button>
+          </div>
         </div>
 
         {/* Features Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-16">
-  {/* هنحط كل كارد جوه div ونديله class الخط */}
-  <div className="[&_h3]:font-['KufyanArabic']">
-    <FeatureCard
-      icon={Brain}
-      title="تقييم معرفي شامل"
-      description="اختبارات مصممة بعناية لفهم نمطك المعرفي الفريد وتحديد نقاط القوة والتحديات."
-    />
-  </div>
+          <div className="[&_h3]:font-['KufyanArabic']">
+            <FeatureCard
+              icon={Brain}
+              title="تقييم معرفي شامل"
+              description="اختبارات مصممة بعناية لفهم نمطك المعرفي الفريد وتحديد نقاط القوة والتحديات."
+            />
+          </div>
 
-  <div className="[&_h3]:font-['KufyanArabic']">
-    <FeatureCard
-      icon={Target}
-      title="محتوى مخصص"
-      description="مناهج تعليمية مصممة خصيصاً لمستواك، تراعي احتياجاتك وتدعم تطورك."
-    />
-  </div>
+          <div className="[&_h3]:font-['KufyanArabic']">
+            <FeatureCard
+              icon={Target}
+              title="محتوى مخصص"
+              description="مناهج تعليمية مصممة خصيصاً لمستواك، تراعي احتياجاتك وتدعم تطورك."
+            />
+          </div>
 
-  <div className="[&_h3]:font-['KufyanArabic']">
-    <FeatureCard
-      icon={Users}
-      title="دعم مستمر"
-      description="مجتمع داعم وموارد تعليمية متجددة لمساعدتك في رحلة التعلم."
-    />
-  </div>
-</div>
-
-
+          <div className="[&_h3]:font-['KufyanArabic']">
+            <FeatureCard
+              icon={Users}
+              title="دعم مستمر"
+              description="مجتمع داعم وموارد تعليمية متجددة لمساعدتك في رحلة التعلم."
+            />
+          </div>
+        </div>
 
         {/* Mission Statement */}
         <div className="mt-20 bg-card rounded-2xl p-8 sm:p-12 border border-border">

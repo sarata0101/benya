@@ -878,7 +878,7 @@ const [clickCount3, setClickCount3] = useState(0);
                   setTimeout(() => {
                     setFeedback1('correct'); 
                     playSound('correct_sound'); // ثم صوت النتيجة
-                  }, 2200);
+                  }, 3000);
                 }}
                 className={`px-8 py-3 border-2 rounded-xl font-bold text-lg transition-all ${feedback1 === 'correct' ? 'bg-green-500 text-white border-green-500 shadow-sm' : 'bg-white border-green-200 text-green-700 hover:bg-green-50'}`}
               >
