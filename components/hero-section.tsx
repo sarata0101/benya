@@ -43,6 +43,18 @@ export function HeroSection({ onStartAssessment }: HeroSectionProps) {
 
           {/* Buttons Container */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            {/* الزرار الأخضر الجديد لتفاصيل المشروع */}
+            <Button
+              asChild
+              size="lg"
+              className="bg-[#687442] hover:bg-[#059669] text-white text-lg px-8 py-6 h-auto rounded-xl shadow-lg hover:shadow-xl transition-all w-full sm:w-auto flex items-center gap-2"
+            >
+              <a href="/benya-details.pdf" target="_blank" rel="noopener noreferrer">
+                <ExternalLink className="w-5 h-5" />
+                لمعرفة تفاصيل أكثر عن مشروع بنية
+              </a>
+            </Button>
+            
             <Button
               size="lg"
               onClick={onStartAssessment}
@@ -51,17 +63,7 @@ export function HeroSection({ onStartAssessment }: HeroSectionProps) {
               ابدأ التقييم الآن
             </Button>
 
-            {/* الزرار الأخضر الجديد لتفاصيل المشروع */}
-            <Button
-              asChild
-              size="lg"
-              className="bg-[#10b981] hover:bg-[#059669] text-white text-lg px-8 py-6 h-auto rounded-xl shadow-lg hover:shadow-xl transition-all w-full sm:w-auto flex items-center gap-2"
-            >
-              <a href="/benya-details.pdf" target="_blank" rel="noopener noreferrer">
-                <ExternalLink className="w-5 h-5" />
-                لمعرفة تفاصيل أكتر عن مشروع بنية
-              </a>
-            </Button>
+            
           </div>
         </div>
 
