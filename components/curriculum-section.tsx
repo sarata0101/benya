@@ -430,7 +430,7 @@ export function CurriculumSection({ onBack, levelId }: CurriculumSectionProps) {
           <div className="flex gap-6">
              <button 
                 onClick={(e) => {
-                  e.stopPropagation(); // Prevents the card sounds from restarting
+                  e.stopPropagation(); 
                   stopAllSounds();
                   playSound('cat_word_voice');
                   setTimeout(() => { playSound('correct_sound'); setFeedback1('correct'); }, 1000);
@@ -470,7 +470,7 @@ export function CurriculumSection({ onBack, levelId }: CurriculumSectionProps) {
               🍎
           </div>
           <h3 className="text-[#800020] font-bold text-xl mb-2 m-0">المحطة الثانية</h3>
-          <p className="text-center text-gray-600 m-0 mb-6 italic text-lg leading-relaxed">"اضغط هنا لسماع اسم الفاكهة"</p>
+          <p className="text-center text-gray-600 m-0 mb-6 italic text-lg leading-relaxed">"انقر هنا لسماع السؤال، ثم اختر الكلمة الصحيحة""</p>
           
           <div className="flex gap-6">
              <button 
@@ -489,7 +489,7 @@ export function CurriculumSection({ onBack, levelId }: CurriculumSectionProps) {
                   e.stopPropagation();
                   stopAllSounds();
                   playSound('apple_word_voice');
-                  setTimeout(() => { playSound('correct_sound'); setFeedback2('correct'); }, 1200);
+                  setTimeout(() => { playSound('correct_sound'); setFeedback2('correct'); }, 1600);
                 }}
                 className={`px-10 py-3 border-2 rounded-full font-bold text-lg transition-all ${feedback2 === 'correct' ? 'bg-red-500 text-white border-red-500 shadow-md scale-105' : 'bg-white border-red-200 text-red-700 hover:bg-red-50'}`}
              >
@@ -516,7 +516,7 @@ export function CurriculumSection({ onBack, levelId }: CurriculumSectionProps) {
               🐭
           </div>
           <h3 className="text-blue-600 font-bold text-xl mb-2 m-0">المحطة الثالثة</h3>
-          <p className="text-center text-gray-600 m-0 mb-6 italic text-lg leading-relaxed">"اضغط هنا لتعرف من أنا!"</p>
+          <p className="text-center text-gray-600 m-0 mb-6 italic text-lg leading-relaxed">"انقر هنا لسماع السؤال، ثم اختر الكلمة الصحيحة""</p>
           
           <div className="flex gap-6">
              <button 
