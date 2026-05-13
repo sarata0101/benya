@@ -367,7 +367,7 @@ export function CurriculumSection({ onBack, levelId }: CurriculumSectionProps) {
         {/* ================= المستوي الثاني ================= */}
           {levelId === 2 && (
             <>
-          {/* الدرس 1 - المستوى الثاني - النسخة المطورة بنظام التحكم الصوتي ومنع التداخل */}
+          {/* Lesson 1 - Level 2 - Optimized for Mobile (Click-based) and Voice Control */}
 {activeLesson === 1 && (
   <div className="prose prose-lg max-w-none px-2">
     {!lessonStarted ? (
@@ -375,7 +375,6 @@ export function CurriculumSection({ onBack, levelId }: CurriculumSectionProps) {
         initial={{ opacity: 0 }} 
         animate={{ opacity: 1 }} 
         onViewportEnter={() => {
-            // تشغيل صوت البوابة فور ظهور شاشة البداية
             stopAllSounds();
             playSound('magic_portal'); 
         }}
@@ -403,30 +402,30 @@ export function CurriculumSection({ onBack, levelId }: CurriculumSectionProps) {
       </motion.div>
     ) : (
       <div className="space-y-10 py-4">
-        {/* العنوان الرئيسي للدرس */}
+        {/* Main Lesson Title */}
         <div className="flex items-center gap-3 mb-8 border-b border-[#8B4513]/10 pb-4">
           <Link2 className="w-8 h-8 text-[#10b981]" />
           <h2 className="font-bold text-2xl m-0 text-[#8B4513]">لعبة الربط</h2>
         </div>
 
-        {/* محطة القطة والكلب */}
+        {/* Station 1: Cat and Dog */}
         <motion.div 
           initial={{ x: -50, opacity: 0 }} 
           animate={{ x: 0, opacity: 1 }} 
-          onMouseEnter={() => {
-              // نطق السؤال الأول لما المؤشر ييجي على المحطة
+          onClick={() => {
+              // Play question voice when clicking the container
               stopAllSounds();
               playSound('question_1_voice');
           }}
-          className="bg-white rounded-2xl p-8 border-2 border-gray-100 flex flex-col items-center shadow-md transition-colors hover:border-[#10b981]/30"
+          className="bg-white rounded-2xl p-8 border-2 border-gray-100 flex flex-col items-center shadow-md cursor-pointer transition-colors hover:border-[#10b981]/30"
         >
           <div 
-            onMouseEnter={(e) => {
-                e.stopPropagation(); // عشان صوت السؤال ميشتغلش تاني معاه
+            onClick={(e) => {
+                e.stopPropagation(); 
                 stopAllSounds();
-                playSound('cat_animal_sound');
+                playSound('cat_word_voice'); // Plays pronunciation instead of animal sound
             }}
-            className="text-7xl mb-6 bg-[#FFB347]/10 w-40 h-40 flex items-center justify-center rounded-3xl border-2 border-[#FFB347]/20 cursor-pointer shadow-inner"
+            className="text-7xl mb-6 bg-[#FFB347]/10 w-40 h-40 flex items-center justify-center rounded-3xl border-2 border-[#FFB347]/20 shadow-inner"
           >
               🐱
           </div>
@@ -435,25 +434,25 @@ export function CurriculumSection({ onBack, levelId }: CurriculumSectionProps) {
           
           <div className="flex gap-6">
              <button 
-                onMouseEnter={(e) => {
+                onClick={(e) => {
                   e.stopPropagation();
                   stopAllSounds();
                   playSound('cat_word_voice');
-                  setTimeout(() => playSound('cat_animal_sound'), 1200); 
+                  setTimeout(() => playSound('correct_sound'), 600);
+                  setFeedback1('correct');
                 }}
-                onClick={() => { stopAllSounds(); playSound('correct_sound'); setFeedback1('correct'); }}
                 className={`px-10 py-3 border-2 rounded-full font-bold text-lg transition-all ${feedback1 === 'correct' ? 'bg-green-500 text-white border-green-500 shadow-md scale-105' : 'bg-white border-green-200 text-green-700 hover:bg-green-50'}`}
              >
                 قطة
              </button>
              <button 
-                onMouseEnter={(e) => {
+                onClick={(e) => {
                   e.stopPropagation();
                   stopAllSounds();
                   playSound('dog_word_voice');
-                  setTimeout(() => playSound('dog_animal_sound'), 1200);
+                  setTimeout(() => playSound('wrong_sound'), 600);
+                  setFeedback1('wrong');
                 }}
-                onClick={() => { stopAllSounds(); playSound('wrong_sound'); setFeedback1('wrong'); }}
                 className={`px-10 py-3 border-2 rounded-full font-bold text-lg transition-all ${feedback1 === 'wrong' ? 'bg-red-500 text-white border-red-500 shadow-md scale-95' : 'bg-white border-red-200 text-red-700 hover:bg-red-50'}`}
              >
                 كلب
@@ -463,24 +462,24 @@ export function CurriculumSection({ onBack, levelId }: CurriculumSectionProps) {
           {feedback1 === 'wrong' && <motion.p initial={{ scale: 0 }} animate={{ scale: 1 }} className="mt-6 text-red-600 font-bold text-lg bg-red-50 px-6 py-2 rounded-full">للأسف إجابة خاطئة، هذه "قطة".</motion.p>}
         </motion.div>
 
-        {/* محطة التفاحة والموز */}
+        {/* Station 2: Apple and Banana */}
         <motion.div 
           initial={{ x: 50, opacity: 0 }} 
           animate={{ x: 0, opacity: 1 }} 
           transition={{ delay: 0.2 }}
-          onMouseEnter={() => {
+          onClick={() => {
               stopAllSounds();
               playSound('question_2_voice');
           }}
-          className="bg-white rounded-2xl p-8 border-2 border-gray-100 flex flex-col items-center shadow-md transition-colors hover:border-[#800020]/20"
+          className="bg-white rounded-2xl p-8 border-2 border-gray-100 flex flex-col items-center shadow-md cursor-pointer transition-colors hover:border-[#800020]/20"
         >
           <div 
-            onMouseEnter={(e) => {
+            onClick={(e) => {
                 e.stopPropagation();
                 stopAllSounds();
-                playSound('apple_crunch_sound');
+                playSound('apple_word_voice');
             }}
-            className="text-7xl mb-6 bg-red-50 w-40 h-40 flex items-center justify-center rounded-3xl border-2 border-red-100 cursor-pointer shadow-inner"
+            className="text-7xl mb-6 bg-red-50 w-40 h-40 flex items-center justify-center rounded-3xl border-2 border-red-100 shadow-inner"
           >
               🍎
           </div>
@@ -489,25 +488,25 @@ export function CurriculumSection({ onBack, levelId }: CurriculumSectionProps) {
           
           <div className="flex gap-6">
              <button 
-                onMouseEnter={(e) => {
+                onClick={(e) => {
                   e.stopPropagation();
                   stopAllSounds();
                   playSound('banana_word_voice');
-                  setTimeout(() => playSound('apple_crunch_sound'), 1200); 
+                  setTimeout(() => playSound('wrong_sound'), 600);
+                  setFeedback2('wrong');
                 }}
-                onClick={() => { stopAllSounds(); playSound('wrong_sound'); setFeedback2('wrong'); }}
                 className={`px-10 py-3 border-2 rounded-full font-bold text-lg transition-all ${feedback2 === 'wrong' ? 'bg-red-500 text-white border-red-500 shadow-md scale-95' : 'bg-white border-gray-200 text-gray-500 hover:bg-gray-50'}`}
              >
                 موز
              </button>
              <button 
-                onMouseEnter={(e) => {
+                onClick={(e) => {
                   e.stopPropagation();
                   stopAllSounds();
                   playSound('apple_word_voice');
-                  setTimeout(() => playSound('apple_crunch_sound'), 1200);
+                  setTimeout(() => playSound('correct_sound'), 600);
+                  setFeedback2('correct');
                 }}
-                onClick={() => { stopAllSounds(); playSound('correct_sound'); setFeedback2('correct'); }}
                 className={`px-10 py-3 border-2 rounded-full font-bold text-lg transition-all ${feedback2 === 'correct' ? 'bg-red-500 text-white border-red-500 shadow-md scale-105' : 'bg-white border-red-200 text-red-700 hover:bg-red-50'}`}
              >
                 تفاحة
@@ -517,24 +516,24 @@ export function CurriculumSection({ onBack, levelId }: CurriculumSectionProps) {
           {feedback2 === 'wrong' && <motion.p initial={{ scale: 0 }} animate={{ scale: 1 }} className="mt-6 text-red-600 font-bold text-lg bg-red-50 px-6 py-2 rounded-full">حاولي ثانية، هذه "تفاحة".</motion.p>}
         </motion.div>
 
-        {/* محطة الفأر والفيل */}
+        {/* Station 3: Mouse and Elephant */}
         <motion.div 
           initial={{ y: 50, opacity: 0 }} 
           animate={{ y: 0, opacity: 1 }} 
           transition={{ delay: 0.4 }}
-          onMouseEnter={() => {
+          onClick={() => {
               stopAllSounds();
               playSound('question_3_voice');
           }}
-          className="bg-white rounded-2xl p-8 border-2 border-gray-100 flex flex-col items-center shadow-md transition-colors hover:border-blue-600/20"
+          className="bg-white rounded-2xl p-8 border-2 border-gray-100 flex flex-col items-center shadow-md cursor-pointer transition-colors hover:border-blue-600/20"
         >
           <div 
-            onMouseEnter={(e) => {
+            onClick={(e) => {
                 e.stopPropagation();
                 stopAllSounds();
-                playSound('mouse_squeak_sound');
+                playSound('mouse_word_voice');
             }}
-            className="text-7xl mb-6 bg-gray-50 w-40 h-40 flex items-center justify-center rounded-3xl border-2 border-gray-200 cursor-pointer shadow-inner"
+            className="text-7xl mb-6 bg-gray-50 w-40 h-40 flex items-center justify-center rounded-3xl border-2 border-gray-200 shadow-inner"
           >
               🐭
           </div>
@@ -543,25 +542,25 @@ export function CurriculumSection({ onBack, levelId }: CurriculumSectionProps) {
           
           <div className="flex gap-6">
              <button 
-                onMouseEnter={(e) => {
+                onClick={(e) => {
                   e.stopPropagation();
                   stopAllSounds();
                   playSound('elephant_word_voice');
-                  setTimeout(() => playSound('elephant_animal_sound'), 800);
+                  setTimeout(() => playSound('wrong_sound'), 600);
+                  setFeedback3('wrong');
                 }}
-                onClick={() => { stopAllSounds(); playSound('wrong_sound'); setFeedback3('wrong'); }}
                 className={`px-10 py-3 border-2 rounded-full font-bold text-lg transition-all ${feedback3 === 'wrong' ? 'bg-red-500 text-white border-red-500 shadow-md scale-95' : 'bg-white border-gray-200 text-gray-500 hover:bg-gray-50'}`}
              >
                 فيل
              </button>
              <button 
-                onMouseEnter={(e) => {
+                onClick={(e) => {
                   e.stopPropagation();
                   stopAllSounds();
                   playSound('mouse_word_voice');
-                  setTimeout(() => playSound('mouse_squeak_sound'), 800);
+                  setTimeout(() => playSound('correct_sound'), 600);
+                  setFeedback3('correct');
                 }}
-                onClick={() => { stopAllSounds(); playSound('correct_sound'); setFeedback3('correct'); }}
                 className={`px-10 py-3 border-2 rounded-full font-bold text-lg transition-all ${feedback3 === 'correct' ? 'bg-blue-500 text-white border-blue-500 shadow-md scale-105' : 'bg-white border-blue-200 text-blue-700 hover:bg-blue-50'}`}
              >
                 فأر
@@ -571,16 +570,16 @@ export function CurriculumSection({ onBack, levelId }: CurriculumSectionProps) {
           {feedback3 === 'wrong' && <motion.p initial={{ scale: 0 }} animate={{ scale: 1 }} className="mt-6 text-red-600 font-bold text-lg bg-red-50 px-6 py-2 rounded-full">خطأ بسيط، هذا هو الصديق "فأر".</motion.p>}
         </motion.div>
 
-        {/* شاشة التخرج والوسام النهائي */}
+        {/* Final Celebration Section */}
         <motion.div 
           initial={{ opacity: 0, scale: 0.8 }} 
           animate={{ opacity: 1, scale: 1 }} 
           transition={{ delay: 0.6 }} 
-          onMouseEnter={() => {
+          onClick={() => {
               stopAllSounds();
               playSound('celebration_fanfare');
           }}
-          className="bg-[#8B4513]/10 rounded-3xl p-10 border-dashed border-4 border-[#8B4513]/30 text-center shadow-xl my-8"
+          className="bg-[#8B4513]/10 rounded-3xl p-10 border-dashed border-4 border-[#8B4513]/30 text-center shadow-xl my-8 cursor-pointer"
         >
             <Trophy className="w-20 h-20 text-yellow-500 mx-auto mb-6 drop-shadow-lg" />
             <h2 className="text-red-600 font-bold text-4xl mb-4 m-0">مُمتَاز يا بطل!</h2>
