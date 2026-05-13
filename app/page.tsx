@@ -11,7 +11,10 @@ type Section = "home" | "assessment" | "levels" | "curriculum"
 
 export default function BeniaApp() {
   const [activeSection, setActiveSection] = useState<Section>("home")
-
+  // ... داخل مكون BeniaApp
+// const [activeSection, setActiveSection] = useState<Section>("home")
+// أضف هذا السطر لحفظ رقم المستوى المختار
+const [selectedLevel, setSelectedLevel] = useState<number>(1)
   const handleNavigate = (section: string) => {
     setActiveSection(section as Section)
     window.scrollTo({ top: 0, behavior: "smooth" })
@@ -28,11 +31,10 @@ export default function BeniaApp() {
   }
 
   const handleStartLevel = (level: number) => {
-    if (level === 1) {
-      setActiveSection("curriculum")
-      window.scrollTo({ top: 0, behavior: "smooth" })
-    }
-  }
+  setSelectedLevel(level); // تحتاج لتعريف state جديدة لحفظ المستوى المختار
+  setActiveSection("curriculum");
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
 
   const handleBackToLevels = () => {
     setActiveSection("levels")
@@ -59,7 +61,7 @@ export default function BeniaApp() {
       )}
 
       {activeSection === "curriculum" && (
-        <CurriculumSection onBack={handleBackToLevels} />
+        <CurriculumSection levelId={selectedLevel} onBack={handleBackToLevels} />
       )}
 
       {/* Footer */}
@@ -72,6 +74,4 @@ export default function BeniaApp() {
       </footer>
     </main>
   )
-
-  
 }
