@@ -63,18 +63,18 @@ export function CurriculumSection({ onBack, levelId }: CurriculumSectionProps) {
 
 // المحطة الأولى: البنت تحب التفاح
 const [wordsList1, setWordsList1] = useState([
+    { id: 7, index: 2, text: 'تفاحة', voice: 'apple_word_voice' },
     { id: 2, index: 0, text: 'البنت', voice: 'girl_word_voice' },
-    { id: 1, index: 1, text: 'تحب', voice: 'loves_word_voice' },
-    { id: 7, index: 2, text: 'التفاح', voice: 'apple_word_voice' }
+    { id: 1, index: 1, text: 'تحب', voice: 'loves2_word_voice' },
 ]);
 const [isCorrect1, setIsCorrect1] = useState(false);
 const [clickCount1, setClickCount1] = useState(0);
 
 // المحطة الثانية: القطة تشرب الحليب
 const [wordsList2, setWordsList2] = useState([
-    { id: 4, index: 0, text: 'القطة', voice: 'cat_word_voice' },
+    { id: 8, index: 2, text: 'الحليب', voice: 'milk_word_voice' },
     { id: 3, index: 1, text: 'تشرب', voice: 'drinks_word_voice' },
-    { id: 8, index: 2, text: 'الحليب', voice: 'milk_word_voice' }
+    { id: 4, index: 0, text: 'القطة', voice: 'cat_word_voice' },
 ]);
 const [isCorrect2, setIsCorrect2] = useState(false);
 const [clickCount2, setClickCount2] = useState(0);
@@ -82,8 +82,9 @@ const [clickCount2, setClickCount2] = useState(0);
 // المحطة الثالثة: الولد يلعب الكرة
 const [wordsList3, setWordsList3] = useState([
     { id: 6, index: 0, text: 'الولد', voice: 'boy_word_voice' },
+    { id: 9, index: 2, text: 'بالكرة', voice: 'ball_word_voice' },
     { id: 5, index: 1, text: 'يلعب', voice: 'plays_word_voice' },
-    { id: 9, index: 2, text: 'بالكرة', voice: 'ball_word_voice' }
+    
 ]);
 const [isCorrect3, setIsCorrect3] = useState(false);
 const [clickCount3, setClickCount3] = useState(0);
@@ -420,10 +421,7 @@ const [clickCount3, setClickCount3] = useState(0);
           animate={{ x: 0, opacity: 1 }} 
           onClick={() => {
               stopAllSounds();
-              // 1. Play the question first
               playSound('question_1_voice');
-              
-             
           }}
           className="bg-white rounded-2xl p-8 border-2 border-gray-100 flex flex-col items-center shadow-md cursor-pointer transition-colors hover:border-[#10b981]/30"
         >
@@ -468,7 +466,6 @@ const [clickCount3, setClickCount3] = useState(0);
           onClick={() => {
               stopAllSounds();
               playSound('question_2_voice');
-              
           }}
           className="bg-white rounded-2xl p-8 border-2 border-gray-100 flex flex-col items-center shadow-md cursor-pointer transition-colors hover:border-[#800020]/20"
         >
@@ -513,8 +510,6 @@ const [clickCount3, setClickCount3] = useState(0);
           onClick={() => {
               stopAllSounds();
               playSound('question_3_voice');
-              // Sequence: Question -> Mouse -> Elephant
-             
           }}
           className="bg-white rounded-2xl p-8 border-2 border-gray-100 flex flex-col items-center shadow-md cursor-pointer transition-colors hover:border-blue-600/20"
         >
@@ -550,6 +545,28 @@ const [clickCount3, setClickCount3] = useState(0);
           </div>
           {feedback3 === 'correct' && <motion.p initial={{ scale: 0 }} animate={{ scale: 1 }} className="mt-6 text-green-600 font-bold text-lg bg-green-50 px-6 py-2 rounded-full">إجابة صحيحة! أنا الفأر بِنْيَة 🐭</motion.p>}
         </motion.div>
+
+        {/* الاحتفال النهائي (شاشة التخرج لهذا المستوى) */}
+        {feedback1 === 'correct' && feedback2 === 'correct' && feedback3 === 'correct' && (
+          <motion.div 
+            initial={{ scale: 0.8, opacity: 0 }} 
+            animate={{ scale: 1, opacity: 1 }} 
+            transition={{ delay: 4 }} // هيستنى 3 ثواني عشان الطفل يخلص قراءة المحطة الأخيرة
+            onViewportEnter={() => { 
+                setTimeout(() => {
+                    stopAllSounds(); 
+                    playSound('celebration_fanfare'); 
+                }, 4000); 
+            }}
+            className="bg-yellow-50 rounded-2xl p-10 border-dashed border-4 border-yellow-200 text-center shadow-lg my-12"
+          >
+              <div className="text-7xl mb-4 animate-bounce">🏆</div>
+              <h2 className="text-yellow-600 font-bold text-3xl mb-2">أنت بطل حقيقي!</h2>
+              <p className="text-[#8B4513] font-bold text-xl m-0 leading-relaxed">
+                  لقد نجحت في جميع التحديات وحصلت على وسام الذكاء! 🥇
+              </p>
+          </motion.div>
+        )}
       </div>
     )}
   </div>
@@ -631,7 +648,7 @@ const [clickCount3, setClickCount3] = useState(0);
                   const forced = [
                     { id: 2, index: 0, text: 'البنت', voice: 'girl_word_voice' },
                     { id: 1, index: 1, text: 'تحب', voice: 'loves_word_voice' },
-                    { id: 7, index: 2, text: 'التفاح', voice: 'apple_word_voice' }
+                    { id: 7, index: 2, text: 'تفاحة', voice: 'apple_word_voice' }
                   ];
                   setWordsList1(forced);
                   setIsCorrect1(true);
@@ -861,7 +878,7 @@ const [clickCount3, setClickCount3] = useState(0);
                   setTimeout(() => {
                     setFeedback1('correct'); 
                     playSound('correct_sound'); // ثم صوت النتيجة
-                  }, 1200);
+                  }, 2200);
                 }}
                 className={`px-8 py-3 border-2 rounded-xl font-bold text-lg transition-all ${feedback1 === 'correct' ? 'bg-green-500 text-white border-green-500 shadow-sm' : 'bg-white border-green-200 text-green-700 hover:bg-green-50'}`}
               >
@@ -1084,7 +1101,7 @@ const [clickCount3, setClickCount3] = useState(0);
         className="text-center py-12 bg-[#8B4513]/5 rounded-2xl border border-[#8B4513]/10 my-6"
       >
         <motion.div animate={{ scale: [1, 1.05, 1] }} transition={{ duration: 2, repeat: Infinity }} className="inline-block mb-6">
-          <div className="text-5xl">🎓⌚</div>
+          <div className="text-5xl">🎓</div>
         </motion.div>
         <h2 className="text-2xl font-bold text-foreground mb-3">أهلاً يا معلمي الصغير!</h2>
         <Button 
@@ -1194,7 +1211,7 @@ const [clickCount3, setClickCount3] = useState(0);
                     setTimeout(() => {
                       setFeedback2('wrong'); 
                       playSound('wrong_sound'); 
-                    }, 1600);
+                    }, 2000);
                   }}
                   className={`px-6 py-2 border rounded-xl font-bold text-sm transition-all ${feedback2 === 'wrong' ? 'bg-red-500 text-white' : 'bg-white border-gray-100 text-gray-400'}`}>
                   ألعب وحدي
@@ -1228,7 +1245,7 @@ const [clickCount3, setClickCount3] = useState(0);
                     setTimeout(() => {
                       setFeedback3('correct'); 
                       playSound('correct_sound'); 
-                    }, 1600);
+                    }, 2000);
                   }}
                   className={`px-6 py-2 border rounded-xl font-bold text-sm transition-all ${feedback3 === 'correct' ? 'bg-orange-500 text-white shadow-md' : 'bg-white border-orange-100 text-orange-700'}`}>
                   يقرأ كتاباً 📖
