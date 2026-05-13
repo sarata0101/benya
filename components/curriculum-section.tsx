@@ -367,7 +367,7 @@ export function CurriculumSection({ onBack, levelId }: CurriculumSectionProps) {
         {/* ================= المستوي الثاني ================= */}
           {levelId === 2 && (
             <>
-          {/* Lesson 1 - Level 2 - Optimized for Mobile (Click-based) and Voice Control */}
+          {/* Lesson 1 - Level 2 - Sequential Audio & Mobile Optimized */}
 {activeLesson === 1 && (
   <div className="prose prose-lg max-w-none px-2">
     {!lessonStarted ? (
@@ -402,7 +402,7 @@ export function CurriculumSection({ onBack, levelId }: CurriculumSectionProps) {
       </motion.div>
     ) : (
       <div className="space-y-10 py-4">
-        {/* Main Lesson Title */}
+        {/* Title */}
         <div className="flex items-center gap-3 mb-8 border-b border-[#8B4513]/10 pb-4">
           <Link2 className="w-8 h-8 text-[#10b981]" />
           <h2 className="font-bold text-2xl m-0 text-[#8B4513]">لعبة الربط</h2>
@@ -413,33 +413,27 @@ export function CurriculumSection({ onBack, levelId }: CurriculumSectionProps) {
           initial={{ x: -50, opacity: 0 }} 
           animate={{ x: 0, opacity: 1 }} 
           onClick={() => {
-              // Play question voice when clicking the container
               stopAllSounds();
+              // 1. Play the question first
               playSound('question_1_voice');
+              
+             
           }}
           className="bg-white rounded-2xl p-8 border-2 border-gray-100 flex flex-col items-center shadow-md cursor-pointer transition-colors hover:border-[#10b981]/30"
         >
-          <div 
-            onClick={(e) => {
-                e.stopPropagation(); 
-                stopAllSounds();
-                playSound('cat_word_voice'); // Plays pronunciation instead of animal sound
-            }}
-            className="text-7xl mb-6 bg-[#FFB347]/10 w-40 h-40 flex items-center justify-center rounded-3xl border-2 border-[#FFB347]/20 shadow-inner"
-          >
+          <div className="text-7xl mb-6 bg-[#FFB347]/10 w-40 h-40 flex items-center justify-center rounded-3xl border-2 border-[#FFB347]/20 shadow-inner">
               🐱
           </div>
           <h3 className="text-[#10b981] font-bold text-xl mb-2 m-0">المحطة الأولى</h3>
-          <p className="text-center text-gray-600 m-0 mb-6 italic text-lg leading-relaxed">"انقر على الكلمة التي تصف الصورة"</p>
+          <p className="text-center text-gray-600 m-0 mb-6 italic text-lg leading-relaxed">"انقر هنا لسماع السؤال، ثم اختر الكلمة الصحيحة"</p>
           
           <div className="flex gap-6">
              <button 
                 onClick={(e) => {
-                  e.stopPropagation();
+                  e.stopPropagation(); // Prevents the card sounds from restarting
                   stopAllSounds();
                   playSound('cat_word_voice');
-                  setTimeout(() => playSound('correct_sound'), 600);
-                  setFeedback1('correct');
+                  setTimeout(() => { playSound('correct_sound'); setFeedback1('correct'); }, 1000);
                 }}
                 className={`px-10 py-3 border-2 rounded-full font-bold text-lg transition-all ${feedback1 === 'correct' ? 'bg-green-500 text-white border-green-500 shadow-md scale-105' : 'bg-white border-green-200 text-green-700 hover:bg-green-50'}`}
              >
@@ -450,8 +444,7 @@ export function CurriculumSection({ onBack, levelId }: CurriculumSectionProps) {
                   e.stopPropagation();
                   stopAllSounds();
                   playSound('dog_word_voice');
-                  setTimeout(() => playSound('wrong_sound'), 600);
-                  setFeedback1('wrong');
+                  setTimeout(() => { playSound('wrong_sound'); setFeedback1('wrong'); }, 1000);
                 }}
                 className={`px-10 py-3 border-2 rounded-full font-bold text-lg transition-all ${feedback1 === 'wrong' ? 'bg-red-500 text-white border-red-500 shadow-md scale-95' : 'bg-white border-red-200 text-red-700 hover:bg-red-50'}`}
              >
@@ -459,7 +452,6 @@ export function CurriculumSection({ onBack, levelId }: CurriculumSectionProps) {
              </button>
           </div>
           {feedback1 === 'correct' && <motion.p initial={{ scale: 0 }} animate={{ scale: 1 }} className="mt-6 text-green-600 font-bold text-lg bg-green-50 px-6 py-2 rounded-full">أحسنتِ! هذه قطة جميلة 🐾</motion.p>}
-          {feedback1 === 'wrong' && <motion.p initial={{ scale: 0 }} animate={{ scale: 1 }} className="mt-6 text-red-600 font-bold text-lg bg-red-50 px-6 py-2 rounded-full">للأسف إجابة خاطئة، هذه "قطة".</motion.p>}
         </motion.div>
 
         {/* Station 2: Apple and Banana */}
@@ -470,21 +462,15 @@ export function CurriculumSection({ onBack, levelId }: CurriculumSectionProps) {
           onClick={() => {
               stopAllSounds();
               playSound('question_2_voice');
+              
           }}
           className="bg-white rounded-2xl p-8 border-2 border-gray-100 flex flex-col items-center shadow-md cursor-pointer transition-colors hover:border-[#800020]/20"
         >
-          <div 
-            onClick={(e) => {
-                e.stopPropagation();
-                stopAllSounds();
-                playSound('apple_word_voice');
-            }}
-            className="text-7xl mb-6 bg-red-50 w-40 h-40 flex items-center justify-center rounded-3xl border-2 border-red-100 shadow-inner"
-          >
+          <div className="text-7xl mb-6 bg-red-50 w-40 h-40 flex items-center justify-center rounded-3xl border-2 border-red-100 shadow-inner">
               🍎
           </div>
           <h3 className="text-[#800020] font-bold text-xl mb-2 m-0">المحطة الثانية</h3>
-          <p className="text-center text-gray-600 m-0 mb-6 italic text-lg leading-relaxed">"أين اسم هذه الفاكهة؟"</p>
+          <p className="text-center text-gray-600 m-0 mb-6 italic text-lg leading-relaxed">"اضغط هنا لسماع اسم الفاكهة"</p>
           
           <div className="flex gap-6">
              <button 
@@ -492,8 +478,7 @@ export function CurriculumSection({ onBack, levelId }: CurriculumSectionProps) {
                   e.stopPropagation();
                   stopAllSounds();
                   playSound('banana_word_voice');
-                  setTimeout(() => playSound('wrong_sound'), 600);
-                  setFeedback2('wrong');
+                  setTimeout(() => { playSound('wrong_sound'); setFeedback2('wrong'); }, 1000);
                 }}
                 className={`px-10 py-3 border-2 rounded-full font-bold text-lg transition-all ${feedback2 === 'wrong' ? 'bg-red-500 text-white border-red-500 shadow-md scale-95' : 'bg-white border-gray-200 text-gray-500 hover:bg-gray-50'}`}
              >
@@ -504,8 +489,7 @@ export function CurriculumSection({ onBack, levelId }: CurriculumSectionProps) {
                   e.stopPropagation();
                   stopAllSounds();
                   playSound('apple_word_voice');
-                  setTimeout(() => playSound('correct_sound'), 600);
-                  setFeedback2('correct');
+                  setTimeout(() => { playSound('correct_sound'); setFeedback2('correct'); }, 1200);
                 }}
                 className={`px-10 py-3 border-2 rounded-full font-bold text-lg transition-all ${feedback2 === 'correct' ? 'bg-red-500 text-white border-red-500 shadow-md scale-105' : 'bg-white border-red-200 text-red-700 hover:bg-red-50'}`}
              >
@@ -513,7 +497,6 @@ export function CurriculumSection({ onBack, levelId }: CurriculumSectionProps) {
              </button>
           </div>
           {feedback2 === 'correct' && <motion.p initial={{ scale: 0 }} animate={{ scale: 1 }} className="mt-6 text-green-600 font-bold text-lg bg-green-50 px-6 py-2 rounded-full">ممتاز! تفاحة حمراء لذيذة 🍎</motion.p>}
-          {feedback2 === 'wrong' && <motion.p initial={{ scale: 0 }} animate={{ scale: 1 }} className="mt-6 text-red-600 font-bold text-lg bg-red-50 px-6 py-2 rounded-full">حاولي ثانية، هذه "تفاحة".</motion.p>}
         </motion.div>
 
         {/* Station 3: Mouse and Elephant */}
@@ -524,21 +507,16 @@ export function CurriculumSection({ onBack, levelId }: CurriculumSectionProps) {
           onClick={() => {
               stopAllSounds();
               playSound('question_3_voice');
+              // Sequence: Question -> Mouse -> Elephant
+             
           }}
           className="bg-white rounded-2xl p-8 border-2 border-gray-100 flex flex-col items-center shadow-md cursor-pointer transition-colors hover:border-blue-600/20"
         >
-          <div 
-            onClick={(e) => {
-                e.stopPropagation();
-                stopAllSounds();
-                playSound('mouse_word_voice');
-            }}
-            className="text-7xl mb-6 bg-gray-50 w-40 h-40 flex items-center justify-center rounded-3xl border-2 border-gray-200 shadow-inner"
-          >
+          <div className="text-7xl mb-6 bg-gray-50 w-40 h-40 flex items-center justify-center rounded-3xl border-2 border-gray-200 shadow-inner">
               🐭
           </div>
           <h3 className="text-blue-600 font-bold text-xl mb-2 m-0">المحطة الثالثة</h3>
-          <p className="text-center text-gray-600 m-0 mb-6 italic text-lg leading-relaxed">"ساعد الصديق الصغير ليعرف اسمه"</p>
+          <p className="text-center text-gray-600 m-0 mb-6 italic text-lg leading-relaxed">"اضغط هنا لتعرف من أنا!"</p>
           
           <div className="flex gap-6">
              <button 
@@ -546,8 +524,7 @@ export function CurriculumSection({ onBack, levelId }: CurriculumSectionProps) {
                   e.stopPropagation();
                   stopAllSounds();
                   playSound('elephant_word_voice');
-                  setTimeout(() => playSound('wrong_sound'), 600);
-                  setFeedback3('wrong');
+                  setTimeout(() => { playSound('wrong_sound'); setFeedback3('wrong'); }, 1000);
                 }}
                 className={`px-10 py-3 border-2 rounded-full font-bold text-lg transition-all ${feedback3 === 'wrong' ? 'bg-red-500 text-white border-red-500 shadow-md scale-95' : 'bg-white border-gray-200 text-gray-500 hover:bg-gray-50'}`}
              >
@@ -558,8 +535,7 @@ export function CurriculumSection({ onBack, levelId }: CurriculumSectionProps) {
                   e.stopPropagation();
                   stopAllSounds();
                   playSound('mouse_word_voice');
-                  setTimeout(() => playSound('correct_sound'), 600);
-                  setFeedback3('correct');
+                  setTimeout(() => { playSound('correct_sound'); setFeedback3('correct'); }, 1000);
                 }}
                 className={`px-10 py-3 border-2 rounded-full font-bold text-lg transition-all ${feedback3 === 'correct' ? 'bg-blue-500 text-white border-blue-500 shadow-md scale-105' : 'bg-white border-blue-200 text-blue-700 hover:bg-blue-50'}`}
              >
@@ -567,26 +543,6 @@ export function CurriculumSection({ onBack, levelId }: CurriculumSectionProps) {
              </button>
           </div>
           {feedback3 === 'correct' && <motion.p initial={{ scale: 0 }} animate={{ scale: 1 }} className="mt-6 text-green-600 font-bold text-lg bg-green-50 px-6 py-2 rounded-full">إجابة صحيحة! أنا الفأر بِنْيَة 🐭</motion.p>}
-          {feedback3 === 'wrong' && <motion.p initial={{ scale: 0 }} animate={{ scale: 1 }} className="mt-6 text-red-600 font-bold text-lg bg-red-50 px-6 py-2 rounded-full">خطأ بسيط، هذا هو الصديق "فأر".</motion.p>}
-        </motion.div>
-
-        {/* Final Celebration Section */}
-        <motion.div 
-          initial={{ opacity: 0, scale: 0.8 }} 
-          animate={{ opacity: 1, scale: 1 }} 
-          transition={{ delay: 0.6 }} 
-          onClick={() => {
-              stopAllSounds();
-              playSound('celebration_fanfare');
-          }}
-          className="bg-[#8B4513]/10 rounded-3xl p-10 border-dashed border-4 border-[#8B4513]/30 text-center shadow-xl my-8 cursor-pointer"
-        >
-            <Trophy className="w-20 h-20 text-yellow-500 mx-auto mb-6 drop-shadow-lg" />
-            <h2 className="text-red-600 font-bold text-4xl mb-4 m-0">مُمتَاز يا بطل!</h2>
-            <p className="text-[#8B4513] font-bold text-2xl m-0 leading-relaxed">
-                لقد حصلتِ بجدارة على <br/>
-                <span className="text-[#10b981] text-3xl"> (وسام الربط الذكي) 🥇</span>
-            </p>
         </motion.div>
       </div>
     )}
