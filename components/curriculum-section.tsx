@@ -63,22 +63,22 @@ export function CurriculumSection({ onBack, levelId }: CurriculumSectionProps) {
 // المحطة الأولى: بِنْيَة يُحب
   // المحطة الأولى: يُحب بِنْيَة (غلط)
   const [wordsList1, setWordsList1] = useState([
-    { id: 2, text: 'بِنْيَة', voice: 'loves_word_voice' },
-    { id: 1, text: 'يُحب', voice: 'benya_word_voice' }
+    { id: 2, text: 'بِنْيَة', voice: 'benya_word_voice' },
+    { id: 1, text: 'يُحب', voice: 'loves_word_voice' }
   ]);
   const [isCorrect1, setIsCorrect1] = useState(false);
 
   // المحطة الثانية: تشرب القطة (غلط)
   const [wordsList2, setWordsList2] = useState([
-    { id: 4, text: 'القطة', voice: 'drinks_word_voice' },
-    { id: 3, text: 'تشرب', voice: 'cat_word_voice' }
+    { id: 4, text: 'القطة', voice: 'cat_word_voice' },
+    { id: 3, text: 'تشرب', voice: 'drinks_word_voice' }
   ]);
   const [isCorrect2, setIsCorrect2] = useState(false);
 
   // المحطة الثالثة: يلعب الولد (غلط)
   const [wordsList3, setWordsList3] = useState([
-    { id: 6, text: 'الولد', voice: 'plays_word_voice' },
-    { id: 5, text: 'يلعب', voice: 'boy_word_voice' }
+    { id: 6, text: 'الولد', voice: 'boy_word_voice' },
+    { id: 5, text: 'يلعب', voice: 'plays_word_voice' }
   ]);
   const [isCorrect3, setIsCorrect3] = useState(false);
 
@@ -557,31 +557,23 @@ export function CurriculumSection({ onBack, levelId }: CurriculumSectionProps) {
         {/* ================= المستوي الثالث ================= */}
           {levelId === 3 && (
             <>
-         {/* الدرس 1 - المستوى الثالث - نظام صانع الجمل المطور بأزرار التبديل */}
+         {/* الدرس 1 - المستوى الثالث - صانع الجمل المطور للأطفال */}
 {activeLesson === 1 && (
   <div className="prose prose-lg max-w-none px-2">
     {!lessonStarted ? (
       <motion.div 
         initial={{ opacity: 0 }} 
         animate={{ opacity: 1 }} 
-        onViewportEnter={() => {
-            stopAllSounds();
-            playSound('magic2_portal'); 
-        }}
-        className="text-center py-16 bg-[#8B4513]/5 rounded-3xl border border-[#8B4513]/10 my-6"
+        onViewportEnter={() => { stopAllSounds(); playSound('magic2_portal'); }}
+        className="text-center py-12 bg-[#8B4513]/5 rounded-3xl border border-[#8B4513]/10 my-6"
       >
-        <motion.div 
-          animate={{ y: [0, -10, 0] }} 
-          transition={{ duration: 2, repeat: Infinity }} 
-          className="inline-block mb-6"
-        >
-          <div className="text-7xl">📜</div> 
+        <motion.div animate={{ y: [0, -10, 0] }} transition={{ duration: 2, repeat: Infinity }} className="inline-block mb-4">
+          <div className="text-6xl">📜</div> 
         </motion.div>
-        <h2 className="text-2xl font-bold text-[#8B4513] mb-4">يا بطل! هيا نجمع الكلمات لنصنع جملة.</h2>
-        <p className="text-muted-foreground mb-8 text-lg">هل أنتَ مستعدٌ لتصبح مؤلفاً صغيراً؟</p>
+        <h2 className="text-xl font-bold text-[#8B4513] mb-2">يا بطل! هيا نجمع الكلمات لنصنع جملة.</h2>
         <Button 
-          size="lg" 
-          className="bg-[#10b981] hover:bg-[#059669] text-white rounded-full px-10 py-6 text-xl shadow-lg" 
+          size="default" 
+          className="bg-[#10b981] hover:bg-[#059669] text-white rounded-full px-8 py-4 text-lg shadow-md" 
           onClick={() => {
               stopAllSounds();
               setLessonStarted(true);
@@ -591,27 +583,35 @@ export function CurriculumSection({ onBack, levelId }: CurriculumSectionProps) {
         </Button>
       </motion.div>
     ) : (
-      <div className="space-y-10 py-4">
-        <div className="flex items-center gap-3 mb-8 border-b border-[#8B4513]/10 pb-4">
-          <PenTool className="w-8 h-8 text-[#10b981]" />
-          <h2 className="font-bold text-2xl m-0 text-[#8B4513]">صانع الجمل</h2>
+      <div className="space-y-8 py-4 max-w-md mx-auto">
+        <div className="flex items-center justify-center gap-3 mb-6 border-b border-[#8B4513]/10 pb-4">
+          <PenTool className="w-6 h-6 text-[#10b981]" />
+          <h2 className="font-bold text-xl m-0 text-[#8B4513]">صانع الجمل</h2>
         </div>
 
-        {/* محطة 1: بِنْيَة يُحب */}
+        {/* محطة 1: البنت تحب التفاح */}
         <motion.div 
-          initial={{ x: -50, opacity: 0 }} 
+          initial={{ x: -30, opacity: 0 }} 
           animate={{ x: 0, opacity: 1 }} 
-          onMouseEnter={() => { if(!isCorrect1) { stopAllSounds(); playSound('question_level3_1_voice'); } }}
-          className="bg-white rounded-2xl p-8 border-2 border-gray-100 flex flex-col items-center shadow-md transition-colors hover:border-[#10b981]/30"
+          className="bg-white rounded-2xl p-6 border border-gray-100 flex flex-col items-center shadow-sm"
         >
-          <div onMouseEnter={(e) => { e.stopPropagation(); stopAllSounds(); }} className="text-6xl mb-6 bg-green-50 w-32 h-32 flex items-center justify-center rounded-2xl border-2 border-green-100 cursor-pointer">🐭🍎</div>
-          <h3 className="text-[#10b981] font-bold text-xl mb-2 m-0">المحطة الأولى</h3>
-          <p className="text-center text-gray-700 m-0 mb-6 font-medium italic">"رتب الكلمات لتصف الصورة"</p>
+          <div onClick={() => { if(!isCorrect1) { stopAllSounds(); playSound('question_level3_1_voice'); } }} className="text-5xl mb-4 bg-green-50 w-24 h-24 flex items-center justify-center rounded-full border-2 border-green-100">👧🍎</div>
+          <h3 className="text-[#10b981] font-bold text-lg mb-1">المحطة الأولى</h3>
+          <p 
+            onClick={() => { if(!isCorrect1) { stopAllSounds(); playSound('question_level3_1_voice'); } }}
+            className="text-center text-gray-600 text-sm m-0 mb-5 italic cursor-help"
+          >
+            "رتب الكلمات لتصف ما تفعله البنت"
+          </p>
           
-          <div className="flex flex-row-reverse gap-4 mb-6">
+          <div className="flex flex-row-reverse gap-2 mb-6">
               {wordsList1.map((word) => (
-                <motion.div layout key={word.id} onMouseEnter={(e) => { e.stopPropagation(); stopAllSounds(); playSound(word.voice); }}
-                  className={`px-8 py-3 border-2 rounded-xl font-bold text-lg transition-all ${isCorrect1 ? 'bg-green-500 text-white border-green-500 shadow-sm' : 'bg-white border-gray-200 text-gray-700'}`}>
+                <motion.div 
+                  layout 
+                  key={word.id} 
+                  onClick={() => { stopAllSounds(); playSound(word.voice); }}
+                  className={`px-4 py-2 border-2 rounded-xl font-bold text-base cursor-pointer transition-all ${isCorrect1 ? 'bg-green-500 text-white border-green-500' : 'bg-white border-gray-100 text-gray-700'}`}
+                >
                   {word.text}
                 </motion.div>
               ))}
@@ -623,7 +623,6 @@ export function CurriculumSection({ onBack, levelId }: CurriculumSectionProps) {
                 stopAllSounds();
                 const newList = [...wordsList1].reverse();
                 setWordsList1(newList);
-                // التعديل هنا فقط: بنتحقق إن الكلمة اللي على اليمين (index 0) بقت "بِنْيَة"
                 if (newList[1].text === 'بِنْيَة') {
                   setIsCorrect1(true);
                   playSound('correct_sound');
@@ -631,31 +630,38 @@ export function CurriculumSection({ onBack, levelId }: CurriculumSectionProps) {
                   playSound('wrong_sound');
                 }
               }}
-              className="bg-orange-500 hover:bg-orange-600 text-white rounded-full px-6 py-4 flex gap-2 items-center shadow-md"
+              className="bg-orange-500 hover:bg-orange-600 text-white rounded-full px-5 py-2 text-sm flex gap-2 items-center shadow-sm"
             >
-              <RefreshCw className="w-5 h-5" /> تبديل الكلمات
+              <RefreshCw className="w-4 h-4" /> تبديل الكلمات
             </Button>
           ) : (
-            <motion.p initial={{ scale: 0 }} animate={{ scale: 1 }} className="mt-6 text-green-600 font-bold text-lg bg-green-50 px-6 py-2 rounded-full">أحسنت! "بِنْيَة يُحب التفاح" 💚</motion.p>
+            <motion.p initial={{ scale: 0.8 }} animate={{ scale: 1 }} className="text-green-600 font-bold text-sm bg-green-50 px-4 py-1 rounded-full">أحسنت! "البنت تحب التفاح" 🍏</motion.p>
           )}
         </motion.div>
 
-        {/* محطة 2: القطة تشرب */}
+        {/* محطة 2: الولد يشرب اللبن */}
         <motion.div 
-          initial={{ x: 50, opacity: 0 }} 
+          initial={{ x: 30, opacity: 0 }} 
           animate={{ x: 0, opacity: 1 }} 
-          transition={{ delay: 0.2 }} 
-          onMouseEnter={() => { if(!isCorrect2) { stopAllSounds(); playSound('question_level3_2_voice'); } }}
-          className="bg-white rounded-2xl p-8 border-2 border-gray-100 flex flex-col items-center shadow-md transition-colors hover:border-blue-500/30"
+          className="bg-white rounded-2xl p-6 border border-gray-100 flex flex-col items-center shadow-sm"
         >
-          <div onMouseEnter={(e) => { e.stopPropagation(); stopAllSounds(); }} className="text-6xl mb-6 bg-blue-50 w-32 h-32 flex items-center justify-center rounded-2xl border-2 border-blue-100 cursor-pointer">🐱🥛</div>
-          <h3 className="text-[#800020] font-bold text-xl mb-2 m-0">المحطة الثانية</h3>
-          <p className="text-center text-gray-700 m-0 mb-6 font-medium italic">"ماذا تفعل القطة؟ رتب الجملة"</p>
+          <div onClick={() => { if(!isCorrect2) { stopAllSounds(); playSound('question_level3_2_voice'); } }} className="text-5xl mb-4 bg-blue-50 w-24 h-24 flex items-center justify-center rounded-full border-2 border-blue-100">🐱🥛</div>
+          <h3 onClick={() => { if(!isCorrect2) { stopAllSounds(); playSound('question_level3_2_voice'); } }} className="text-[#800020] font-bold text-lg mb-1">المحطة الثانية</h3>
+          <p 
+            onClick={() => { if(!isCorrect2) { stopAllSounds(); playSound('question_level3_2_voice'); } }}
+            className="text-center text-gray-600 text-sm m-0 mb-5 italic cursor-help"
+          >
+            "ماذا تفعل القطة؟ رتب الجملة"
+          </p>
           
-          <div className="flex flex-row-reverse gap-4 mb-6">
+          <div className="flex flex-row-reverse gap-2 mb-6">
               {wordsList2.map((word) => (
-                <motion.div layout key={word.id} onMouseEnter={(e) => { e.stopPropagation(); stopAllSounds(); playSound(word.voice); }}
-                  className={`px-8 py-3 border-2 rounded-xl font-bold text-lg transition-all ${isCorrect2 ? 'bg-blue-500 text-white border-blue-500 shadow-sm' : 'bg-white border-gray-200 text-gray-700'}`}>
+                <motion.div 
+                  layout 
+                  key={word.id} 
+                  onClick={() => { stopAllSounds(); playSound(word.voice); }}
+                  className={`px-4 py-2 border-2 rounded-xl font-bold text-base cursor-pointer transition-all ${isCorrect2 ? 'bg-blue-500 text-white border-blue-500' : 'bg-white border-gray-100 text-gray-700'}`}
+                >
                   {word.text}
                 </motion.div>
               ))}
@@ -667,7 +673,6 @@ export function CurriculumSection({ onBack, levelId }: CurriculumSectionProps) {
                 stopAllSounds();
                 const newList = [...wordsList2].reverse();
                 setWordsList2(newList);
-                // التعديل هنا فقط: بنتحقق إن الكلمة اللي على اليمين بقت "القطة"
                 if (newList[1].text === 'القطة') {
                   setIsCorrect2(true);
                   playSound('correct_sound');
@@ -675,31 +680,39 @@ export function CurriculumSection({ onBack, levelId }: CurriculumSectionProps) {
                   playSound('wrong_sound');
                 }
               }}
-              className="bg-orange-500 hover:bg-orange-600 text-white rounded-full px-6 py-4 flex gap-2 items-center shadow-md"
+              className="bg-orange-500 hover:bg-orange-600 text-white rounded-full px-5 py-2 text-sm flex gap-2 items-center shadow-sm"
             >
-              <RefreshCw className="w-5 h-5" /> تبديل الكلمات
+              <RefreshCw className="w-4 h-4" /> تبديل الكلمات
             </Button>
           ) : (
-            <motion.p initial={{ scale: 0 }} animate={{ scale: 1 }} className="mt-6 text-blue-600 font-bold text-lg bg-blue-50 px-6 py-2 rounded-full">رائع! "القطة تشرب اللبن" 🥛</motion.p>
+            <motion.p initial={{ scale: 0.8 }} animate={{ scale: 1 }} className="text-blue-600 font-bold text-sm bg-blue-50 px-4 py-1 rounded-full">رائع! "الولد يشرب اللبن" 🥛</motion.p>
           )}
         </motion.div>
 
-        {/* محطة 3: الولد يلعب */}
+        {/* محطة 3: الولد يلعب بالكرة */}
         <motion.div 
-          initial={{ y: 50, opacity: 0 }} 
-          animate={{ y: 0, opacity: 1 }} 
-          transition={{ delay: 0.4 }} 
-          onMouseEnter={() => { if(!isCorrect3) { stopAllSounds(); playSound('question_level3_3_voice'); } }}
-          className="bg-white rounded-2xl p-8 border-2 border-gray-100 flex flex-col items-center shadow-md transition-colors hover:border-orange-500/30"
-        >
-          <div onMouseEnter={(e) => { e.stopPropagation(); stopAllSounds(); }} className="text-6xl mb-6 bg-orange-50 w-32 h-32 flex items-center justify-center rounded-2xl border-2 border-orange-100 cursor-pointer">👦⚽</div>
-          <h3 className="text-orange-600 font-bold text-xl mb-2 m-0">المحطة الثالثة</h3>
-          <p className="text-center text-gray-700 m-0 mb-6 font-medium italic">"اصنع جملة تلعب بها"</p>
           
-          <div className="flex flex-row-reverse gap-4 mb-6">
+          initial={{ y: 30, opacity: 0 }} 
+          animate={{ y: 0, opacity: 1 }} 
+          className="bg-white rounded-2xl p-6 border border-gray-100 flex flex-col items-center shadow-sm"
+        >
+          <div onClick={() => { if(!isCorrect3) { stopAllSounds(); playSound('question_level3_3_voice'); } }} className="text-5xl mb-4 bg-orange-50 w-24 h-24 flex items-center justify-center rounded-full border-2 border-orange-100">👦⚽</div>
+          <h3 onClick={() => { if(!isCorrect3) { stopAllSounds(); playSound('question_level3_3_voice'); } }} className="text-orange-600 font-bold text-lg mb-1">المحطة الثالثة</h3>
+          <p 
+            onClick={() => { if(!isCorrect3) { stopAllSounds(); playSound('question_level3_3_voice'); } }}
+            className="text-center text-gray-600 text-sm m-0 mb-5 italic cursor-help"
+          >
+            "رتب جملة اللعب بالكرة"
+          </p>
+          
+          <div className="flex flex-row-reverse gap-2 mb-6">
               {wordsList3.map((word) => (
-                <motion.div layout key={word.id} onMouseEnter={(e) => { e.stopPropagation(); stopAllSounds(); playSound(word.voice); }}
-                  className={`px-8 py-3 border-2 rounded-xl font-bold text-lg transition-all ${isCorrect3 ? 'bg-orange-500 text-white border-orange-500 shadow-sm' : 'bg-white border-gray-200 text-gray-700'}`}>
+                <motion.div 
+                  layout 
+                  key={word.id} 
+                  onClick={() => { stopAllSounds(); playSound(word.voice); }}
+                  className={`px-4 py-2 border-2 rounded-xl font-bold text-base cursor-pointer transition-all ${isCorrect3 ? 'bg-orange-500 text-white border-orange-500' : 'bg-white border-gray-100 text-gray-700'}`}
+                >
                   {word.text}
                 </motion.div>
               ))}
@@ -711,7 +724,6 @@ export function CurriculumSection({ onBack, levelId }: CurriculumSectionProps) {
                 stopAllSounds();
                 const newList = [...wordsList3].reverse();
                 setWordsList3(newList);
-                // التعديل هنا فقط: بنتحقق إن الكلمة اللي على اليمين بقت "الولد"
                 if (newList[1].text === 'الولد') {
                   setIsCorrect3(true);
                   playSound('correct_sound');
@@ -719,32 +731,26 @@ export function CurriculumSection({ onBack, levelId }: CurriculumSectionProps) {
                   playSound('wrong_sound');
                 }
               }}
-              className="bg-orange-500 hover:bg-orange-600 text-white rounded-full px-6 py-4 flex gap-2 items-center shadow-md"
+              className="bg-orange-500 hover:bg-orange-600 text-white rounded-full px-5 py-2 text-sm flex gap-2 items-center shadow-sm"
             >
-              <RefreshCw className="w-5 h-5" /> تبديل الكلمات
+              <RefreshCw className="w-4 h-4" /> تبديل الكلمات
             </Button>
           ) : (
-            <motion.p initial={{ scale: 0 }} animate={{ scale: 1 }} className="mt-6 text-orange-600 font-bold text-lg bg-orange-50 px-6 py-2 rounded-full">ممتاز! "الولد يلعب بالكرة" ⚽</motion.p>
+            <motion.p initial={{ scale: 0.8 }} animate={{ scale: 1 }} className="text-orange-600 font-bold text-sm bg-orange-50 px-4 py-1 rounded-full">ممتاز! "الولد يلعب بالكرة" ⚽</motion.p>
           )}
         </motion.div>
 
         {/* الاحتفال النهائي */}
         {isCorrect1 && isCorrect2 && isCorrect3 && (
           <motion.div 
-            initial={{ opacity: 0, y: 20 }} 
-            animate={{ opacity: 1, y: 0 }} 
-            transition={{ delay: 0.6 }} 
-            onMouseEnter={() => { stopAllSounds(); playSound('celebration2_fanfare'); }}
-            className="bg-[#F5F5DC] rounded-3xl p-10 border-dashed border-4 border-green-200 text-center relative overflow-hidden shadow-lg my-8"
+            initial={{ opacity: 0, scale: 0.9 }} 
+            animate={{ opacity: 1, scale: 1 }} 
+            onViewportEnter={() => { stopAllSounds(); playSound('celebration2_fanfare'); }}
+            className="bg-yellow-50 rounded-2xl p-6 border-dashed border-2 border-yellow-200 text-center shadow-sm"
           >
-              <div className="absolute inset-0 pointer-events-none flex justify-around items-start opacity-30">
-                  <span className="text-2xl animate-bounce">🍃</span>
-                  <span className="text-2xl animate-bounce delay-75">🍂</span>
-                  <span className="text-2xl animate-bounce delay-150">🌿</span>
-              </div>
-              <div className="text-6xl mb-4">✨🕺✨</div>
-              <h2 className="text-green-600 font-bold text-3xl mb-2 m-0">مُبارك أيها المؤلف!</h2>
-              <p className="text-[#8B4513] font-bold text-xl m-0">لقد حصلتَ على (وسام المؤلف الصغير) 🍃</p>
+              <div className="text-5xl mb-2 animate-bounce">🏆</div>
+              <h2 className="text-green-600 font-bold text-xl mb-1">مُبارك أيها المؤلف!</h2>
+              <p className="text-[#8B4513] font-bold text-sm m-0">لقد حصلتَ على (وسام المؤلف الصغير) ✨</p>
           </motion.div>
         )}
       </div>
